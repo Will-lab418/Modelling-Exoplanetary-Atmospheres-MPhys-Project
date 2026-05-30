@@ -1,0 +1,54 @@
+! Namelist file for the tutorial chem_kin: calculating chemical kinetics abundances with a read in PT profile, including
+! vertical mixing and photochemistry
+
+&UNITS
+/
+
+&PARAM 
+Debug  = 0
+fin = 'wasp39b_pt_eq.ncdf'
+/
+
+&EOS gamma = 0./
+
+&GRID 
+ndepth = 50
+mixing = t
+kzzcst = 1e9
+
+corr_k = t
+/
+
+&CHEMISTRY 
+chem  = 'neq' 
+fAin = 'chem_dummy.ncdf'
+fAeqout  = 'wasp39b_chem_kin_equilibrium.ncdf'
+fAneqout = 'wasp39b_chem_kin_kinetics.ncdf'
+mdh = 0.
+init_eq = t
+print_chem = t
+/
+
+&CHEM_NEQ
+tmax = 1e9
+photochem= t
+fhnu_uv = 'hnu_uv_wasp39 2.ncdf'
+mod_fuv = 5
+mod_jac = 100
+/
+
+&RADTRANS 
+/
+
+
+&OPACITY 
+nkap =12
+/
+
+&SOLVER 
+solve_hydro  = f
+solve_energy = f
+/
+ 
+&CONVECTION 
+/
