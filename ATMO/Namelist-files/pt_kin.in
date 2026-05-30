@@ -1,0 +1,84 @@
+! Namelist file for the tutorial pt_eq: 1D radiative-convective equilibrium profile (with equilibrium chemistry)
+! This example sets the parameters for HD209
+
+&UNITS
+/
+
+&PARAM 
+Debug  = 0
+fout = 'pt_kin.ncdf'
+/
+
+&EOS gamma = 0./
+
+&GRID 
+logg   = 2.98
+teff   = 100.
+tinit  = 1000.
+isothermal = f
+ndepth = 50
+pmin = 1E-5
+pmax = 1E2
+Rp = 1.257
+mixing = t
+kzzcst = 1e9
+
+taumin = 2E-6
+taumax = 5E4
+check_tau = t
+mod_tau = 5
+
+corr_k = t
+/
+
+&CHEMISTRY 
+chem  = 'neq' 
+fAin = 'chem_dummy.ncdf'
+fAeqout = 'chem_pt_kin_equilibrium.ncdf'
+fAneqout = 'chem_pt_kin_kinetics.ncdf'
+mdh = 0.
+init_eq = t
+print_chem = t
+/
+
+&CHEM_NEQ
+tmax = 1e9
+photochem= f
+fhnu_uv = 'hnu_uv_sun.ncdf'
+mod_fuv = 5
+mod_jac = 100
+dtmin = 1e-2
+/
+
+&RADTRANS nrays = 16
+scatter = t
+irrad = t
+firad='kurucz_hd209.ncdf' 
+rstar = 1.118 
+rorbit = 0.047
+fred = 0.5
+ftau_top = 1
+murad = 0.5
+/
+
+&RADTRANS
+/
+
+&CHEM_RELAX
+/
+
+&OPACITY 
+nkap =12
+/
+
+&SOLVER 
+solve_hydro  = t
+solve_energy = t
+minstep      = 1.0E-1
+maxstep      = 9.0E-1
+accuracy     = 1.0E-3
+psurf        = 1E-5
+print_err = f
+/
+ 
+&CONVECTION alpha = 1.5/
