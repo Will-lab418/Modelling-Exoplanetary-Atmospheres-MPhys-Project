@@ -38,6 +38,10 @@ mod_jac = 100
 /
 
 &RADTRANS 
+rstar = 0.939 
+rorbit = 0.048
+fred = 0.5
+murad = 0.5
 /
 
 
